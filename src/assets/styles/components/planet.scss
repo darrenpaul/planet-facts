@@ -1,0 +1,104 @@
+.main--container {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  grid-template-rows: 1fr 0.5fr 0.5fr;
+  grid-template-areas:
+    "images information"
+    "images buttons"
+    "glance-cards glance-cards";
+
+  .images--container {
+    grid-area: images;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: clamp(173px, 50vw, 450px);
+      height: clamp(173px, 50vw, 450px);
+    }
+  }
+  .information--container {
+    grid-area: information;
+    h3 {
+      font-size: clamp(#{$font-size-700}, 5vw, #{$font-size-900});
+    }
+
+    p {
+      font-family: "Spartan", sans-serif;
+      font-size: clamp(#{$font-size-200}, 5vw, #{$font-size-300});
+      color: $color-200;
+
+      &:last-child {
+        color: $color-300;
+      }
+    }
+
+    a {
+      color: $color-200;
+      font-family: "Spartan", sans-serif;
+      font-size: clamp(#{$font-size-200}, 5vw, #{$font-size-300});
+    }
+  }
+
+  .context-buttons--container {
+    grid-area: buttons;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+
+    button {
+      display: flex;
+      align-items: center;
+      border: solid $border-radius $border-color;
+      background: none;
+
+      p {
+        &:first-child {
+          color: $color-200;
+        }
+        &:last-child {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .glance-cards--container {
+    grid-area: glance-cards;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .main--container {
+    grid-gap: $space-400;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.3fr 0.1fr;
+    grid-template-areas:
+      "images images"
+      "information buttons"
+      "glance-cards glance-cards";
+  }
+}
+
+@media only screen and (max-width: 411px) {
+  .main--container {
+    grid-gap: $space-400;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "images"
+      "information"
+      "buttons"
+      "glance-cards";
+
+    .glance-cards--container {
+      grid-area: glance-cards;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+  }
+}
