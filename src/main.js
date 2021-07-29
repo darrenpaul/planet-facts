@@ -4,10 +4,16 @@ import router from "./router";
 import store from "./store";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faExternalLinkSquareAlt);
+import {
+  faBars,
+  faChevronRight,
+  faCircle,
+  faExternalLinkSquareAlt,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(faExternalLinkSquareAlt, faBars, faCircle, faChevronRight);
 
 createApp(App)
   .use(store)

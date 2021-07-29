@@ -21,9 +21,6 @@
   }
   .information--container {
     grid-area: information;
-    h3 {
-      font-size: clamp(#{$font-size-700}, 5vw, #{$font-size-900});
-    }
 
     p {
       font-family: "Spartan", sans-serif;
@@ -54,6 +51,8 @@
       background: none;
 
       p {
+        color: $color-100;
+
         &:first-child {
           color: $color-200;
         }

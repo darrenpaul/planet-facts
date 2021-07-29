@@ -1,5 +1,6 @@
 import { createStore, createLogger } from "vuex";
 
+import applicationModule from "./modules/application";
 import planetsModule from "./modules/planets";
 
 const state = {};
@@ -8,6 +9,7 @@ const mutations = {};
 const getters = {};
 
 const modules = {
+  application: applicationModule,
   planets: planetsModule,
 };
 

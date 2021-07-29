@@ -7,7 +7,6 @@ $border-color: $color-300;
 
 * {
   font-family: "Antonio", sans-serif;
-  color: $color-100;
   margin: 0;
   padding: 0;
 }
@@ -19,6 +18,19 @@ body {
 
 button {
   cursor: pointer;
+}
+
+h2,
+h3 {
+  color: $color-100;
+}
+
+h2 {
+  font-size: $font-size-500;
+}
+
+h3 {
+  font-size: clamp(#{$font-size-700}, 5vw, #{$font-size-900});
 }
 
 .main-app--container {

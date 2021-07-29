@@ -1,5 +1,5 @@
 <template>
-  <div class="main--container">
+  <div v-if="menuState === false" class="main--container">
     <div class="images--container">
       <img class="planet--image" :src="imagePath" alt="" />
     </div>
@@ -51,6 +51,8 @@
 <script>
 // Components
 import GlanceCard from "@/components/GlanceCard.vue";
+// Scripts
+import { colors } from "@/utils/colors";
 
 export default {
   name: "Planet Component",
@@ -71,20 +73,19 @@ export default {
         { name: "Internal Structure", value: "structure" },
         { name: "Surface Geology", value: "geology" },
       ],
-      activeColors: {
-        mercury: "#419ebb",
-        venus: "#eda249",
-        earth: "#6f2ed6",
-        mars: "#d14c32",
-        jupiter: "#d83a34",
-        saturn: "#cd5120",
-        uranus: "#1ec2a4",
-        neptune: "#2d68f0",
-      },
+      activeColors: colors,
     };
   },
 
+  mounted() {
+    this.$store.getters["application/MENU_STATE"];
+  },
+
   computed: {
+    menuState() {
+      return this.$store.getters["application/MENU_STATE"];
+    },
+
     imagePath() {
       let image = this.planetData.images.planet;
       if (this.activeContext === "structure") {
@@ -101,8 +102,6 @@ export default {
     },
 
     activeColor() {
-      console.log(this.activeContext);
-      console.log(this.activeColors[this.activeContext]);
       return this.activeColors[this.planetData.name.toLowerCase()];
     },
   },
