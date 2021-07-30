@@ -7,7 +7,7 @@
     <div class="information--container">
       <h3>{{ planetData.name }}</h3>
       <p>{{ planetData[activeContext].content }}</p>
-      <p>
+      <p class="--link">
         Source:&nbsp;
         <a :href="planetData[activeContext].source" target="_blank">
           Wikipedia
@@ -24,12 +24,32 @@
         :key="index"
         :class="['context--button']"
         :style="{
-          background: button.value === activeContext ? `${activeColor}` : '',
+          background:
+            button.value === activeContext && isMobile === false
+              ? `${activeColor}`
+              : `none`,
+          borderBottom:
+            button.value === activeContext && isMobile
+              ? `solid 3px ${activeColor}`
+              : isMobile === false
+              ? ''
+              : `none`,
         }"
         @click="() => onContextClick(button.value)"
       >
         <p>0{{ index + 1 }}</p>
-        <p>{{ button.name }}</p>
+        <p
+          :style="{
+            color:
+              button.value === activeContext && isMobile
+                ? `#ffffff`
+                : isMobile === false
+                ? '#ffffff'
+                : '#838391',
+          }"
+        >
+          {{ isMobile ? button.short : button.name }}
+        </p>
       </button>
     </div>
 
@@ -69,15 +89,20 @@ export default {
   data() {
     return {
       contextButtons: [
-        { name: "Overview", value: "overview" },
-        { name: "Internal Structure", value: "structure" },
-        { name: "Surface Geology", value: "geology" },
+        { name: "Overview", value: "overview", short: "Overview" },
+        { name: "Internal Structure", value: "structure", short: "Structure" },
+        { name: "Surface Geology", value: "geology", short: "Surface" },
       ],
       activeColors: colors,
+      windowWidth: window.innerWidth,
     };
   },
 
   mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+
     this.$store.getters["application/MENU_STATE"];
   },
 
@@ -103,6 +128,11 @@ export default {
 
     activeColor() {
       return this.activeColors[this.planetData.name.toLowerCase()];
+    },
+
+    isMobile() {
+      if (this.windowWidth > 570) return false;
+      return true;
     },
   },
 

@@ -34,12 +34,18 @@ h3 {
 }
 
 .main-app--container {
-  margin: clamp(#{$space-500}, 30vw, #{$space-700});
+  margin: clamp(#{$space-500}, 20vw, #{$space-600});
 }
 
 @media only screen and (max-width: 768px) {
   .main-app--container {
     margin: clamp(#{$space-600}, 30vw, #{$space-600});
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .main-app--container {
+    margin: $space-400 0;
   }
 }
 

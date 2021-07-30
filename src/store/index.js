@@ -1,4 +1,4 @@
-import { createStore, createLogger } from "vuex";
+import { createStore } from "vuex";
 
 import applicationModule from "./modules/application";
 import planetsModule from "./modules/planets";
@@ -19,5 +19,4 @@ export default createStore({
   mutations,
   getters,
   modules,
-  plugins: [createLogger()],
 });

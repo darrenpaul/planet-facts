@@ -4,16 +4,45 @@
   align-items: flex-start;
   justify-content: center;
   border: solid $border-radius $border-color;
+  padding: $space-400;
+  max-height: 225px;
+
   p {
     &:first-child {
-      font-size: clamp(#{$font-size-100}, 4vw, #{$font-size-200});
+      font-size: clamp(#{$font-size-100}, 1vw, #{$font-size-200});
       color: $color-200;
       font-family: "Spartan", sans-serif;
       text-transform: uppercase;
     }
+
     &:last-child {
       color: $color-100;
-      font-size: clamp(#{$font-size-400}, 4vw, #{$font-size-700});
+      font-size: clamp(#{$font-size-400}, 3vw, #{$font-size-700});
+    }
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .glance--container {
+    p {
+      &:last-child {
+        color: $color-100;
+        font-size: clamp(#{$font-size-400}, 2vw, #{$font-size-700});
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .glance--container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      &:first-child {
+        font-size: clamp(#{$font-size-100}, 2vw, #{$font-size-200});
+      }
     }
   }
 }
